@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interpretações</title>
+    <style>
+        
+        * {
+           font-family: Arial, Helvetica, sans-serif;
+           margin: 0px;
+           padding: 0px;
+           background-color: #303450;
+           color: white;
+           font-size: medium;
+        }
+
+        .container {
+            margin-left: 2vh;
+            margin-right: 2vh;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-top: 2vh;
+            font-size: 3vh;
+            padding-bottom: 0.8vh;
+        }
+
+        .rocky {
+            display: grid;
+            grid-template-areas: "info texto";
+        }
+
+        .textoRocky, .textoRambo, .textoCobra, .textoCliffhanger, .textoMercenarios, .textoCreed {
+            display: grid;
+            grid-area: texto;
+            margin-left: 1.4vh;
+            align-items: center;
+        }
+
+        .rambo {
+            display: grid;
+            grid-template-areas: "info texto";
+        }
+
+        .cobra {
+            display: grid;
+            grid-template-areas: "info texto";
+        }
+
+        .textoCobra {
+            display: flex;
+            justify-content: left;
+            width: auto;
+        }
+
+        .cliffhanger {
+            display: grid;
+            grid-template-areas: "info texto";
+        }
+
+        .mercenarios {
+            display: grid;
+            grid-template-areas: "info texto";
+        }
+
+        .creed {
+            display: grid;
+            grid-template-areas: "info texto";
+        }
+
+        p {
+            font-size: 12px;
+        }
+
+        img {
+            width: 18vh;
+            height: auto;
+            border-radius: 1vh;
+            max-width: 100%;
+            margin-bottom: 4vh;
+            margin-top: 1vh;
+        }
+
+        h2 {
+            font-family: system-ui, Arial, Helvetica, sans-serif;
+            max-width: 100%;
+            font-size: 17px;
+        }
+
+        h4 {
+            font-family: system-ui, Arial, Helvetica, sans-serif;
+            color: rgb(164, 164, 164);
+            max-width: 100%;
+            font-size: 14px;
+        }
+
+        .mais {
+            font-family: system-ui, Arial, Helvetica, sans-serif;
+            max-width: 100%;
+            font-size: 14px;
+            padding-bottom: 2vh;
+            }
+        
+        .mais > p {
+            font-size: 16px;
+        }
+
+        .link {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0.3vh;
+        }
+
+        @media screen and (min-width: 600px ) {
+
+
+            p, .mais > p  {
+                font-size: 2.7vh
+            }
+
+            img {
+                width: 25vh;
+            }
+
+            .infoRambo > img {
+                height: 30vh;
+            }
+
+            h2 {
+                font-size: 3vh;
+            }
+
+            h4 {
+                font-size: 2vh;
+            }
+
+            a {
+                font-size: 2.3vh;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="divTitulo">
+            <h1 class="titulo">Interpretações</h1>
+        </div>
+        <div class="interpretacoes">
+            <div class="rocky">
+                <div class="infoRocky">
+                    <h2>Rocky Balboa</h2>
+                    <h4>Rocky</h4>
+                    <img src="/imagens/stallonerocky.jpeg" alt="Stallone em Rocky">
+                </div>
+                <div class="textoRocky">
+                    <p>
+                    Sylvester Stallone interpreta Rocky Balboa, um boxeador amador de Filadélfia que recebe a chance de lutar pelo 
+                    título mundial de pesos pesados. Ao longo da série, Rocky se transforma de um azarão em um campeão icônico, 
+                    enfrentando adversidades pessoais e profissionais.</p>
+                </div>
+            </div>
+            <div class="rambo">
+                <div class="infoRambo">
+                    <h2>John Rambo</h2>
+                    <h4>Rambo</h4>
+                    <img src="/imagens/stallonerambo.jpeg" alt="Stallone em Rambo">
+                </div>
+                <div class="textoRambo">
+                    <p>Sylvester Stallone interpreta John Rambo, um veterano de guerra do Vietnã altamente treinado que luta contra a 
+                        injustiça e a opressão. Em cada filme da série, Rambo enfrenta missões perigosas, usando suas habilidades de 
+                        combate para sobreviver e proteger os inocentes.</p>
+                </div>
+            </div>
+            <div class="cobra">
+                <div class="infoCobra">
+                    <h2>Mario Cobretti</h2>
+                    <h4>Cobra</h4>
+                    <img src="/imagens/stallonecobra.jpeg" alt="Stallone em Cobra">
+                </div>
+                <div class="textoCobra">
+                    <p>Sylvester Stallone interpreta Marion "Cobra" Cobretti, um impiedoso policial de Los Angeles especializado em 
+                        combater crimes violentos. Em "Cobra", ele enfrenta uma gangue de psicopatas liderados pelo "Night Slasher", 
+                        utilizando métodos extremos para proteger a cidade.</p>
+                </div>
+            </div>
+            <div class="cliffhanger">
+                <div class="infoCliffhanger">
+                    <h2>Gabe Walker</h2>
+                    <h4>Cliffhanger</h4>
+                    <img src="/imagens/stallonecliffhanger.jpeg" alt="Stallone em Cliffhanger">
+                </div>
+                <div class="textoCliffhanger">
+                    <p>Sylvester Stallone interpreta Gabe Walker, um experiente alpinista e socorrista que sofre um trauma após a morte 
+                        de uma amiga durante uma missão de resgate. Em "Cliffhanger", Gabe é forçado a confrontar seus medos quando um 
+                        grupo de criminosos o coage a ajudar na busca por malas de dinheiro espalhadas nas montanhas.</p>
+                </div>
+            </div>
+            <div class="mercenarios">
+                <div class="infoMercenarios">
+                    <h2>Barney Ross</h2>
+                    <h4>Os Mercenários</h4>
+                    <img src="/imagens/stallonemercenarios.jpeg" alt="Stallone em Mercenários">
+                </div>
+                <div class="textoMercenarios">
+                    <p>Sylvester Stallone interpreta Barney Ross, o líder de um grupo de mercenários altamente habilidosos conhecido 
+                        como "Os Mercenários". Em "Os Mercenários", Barney e sua equipe assumem missões perigosas para eliminar ameaças 
+                        globais, enfrentando vilões implacáveis e desafios mortais. </p>
+                </div>
+            </div>
+            <div class="creed">
+                <div class="infoCreed">
+                    <h2>Rocky Balboa</h2>
+                    <h4>Creed</h4>
+                    <img src="/imagens/stallonecreed.jpeg" alt="Stallone em Creed">
+                </div>
+                <div class="textoCreed">
+                    <p>Sylvester Stallone interpreta Rocky Balboa, agora um treinador aposentado, que volta ao mundo do boxe para treinar 
+                        Adonis Creed, o filho de seu antigo amigo e rival, Apollo Creed. Em "Creed", Rocky passa seus conhecimentos e 
+                        experiência para ajudar Adonis a alcançar seu potencial, enquanto lida com seus próprios desafios de saúde e 
+                        envelhecimento.</p>
+                </div>
+            </div>
+        </div>
+        <div class="mais">
+            <p style="color: gold;">Veja mais sobre Sylvester Stallone em:</p>
+            <div class="link">
+                <a style="color: #32C8B3;" id="inicio" href="index.html">Início</a>
+                <a style="color: #32C8B3;" id="producoes" href="producoes.html">Produções</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
