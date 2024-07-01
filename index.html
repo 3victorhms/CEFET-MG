@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sylvester Stallone</title>
+    <style>
+        * {
+           font-family: Arial, Helvetica, sans-serif;
+           margin: 0px;
+           padding: 0px;
+           background-color: #303450;
+           color: white;
+           font-size: medium;
+        }
+
+        .container {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+
+        #titulo {
+            text-align: center;
+            margin-top: 2vh;
+            font-size: 5.3vw;
+            padding-bottom: 0.8vh;
+        }
+
+        #stallonefoto {
+            display: block;
+            align-items: center;
+            margin: 3vh auto;
+            margin-bottom: 1vh;
+            margin-top: 1vh;
+            width: 74vw;
+            border-radius: 1vh;
+        }
+
+
+        #textocuriosidades, #textovida, #textoprincipal {
+            font-family: system-ui, Arial, Helvetica, sans-serif;
+            margin: 2vh;
+            margin-top: 1.5vh;
+            max-width: 100%;
+            font-size: 14px;
+        }
+
+        h2 {
+            font-family: system-ui, Arial, Helvetica, sans-serif;
+            margin: 2vh;
+            max-width: 100%;
+            font-size: 17px;
+            color: rgb(213, 210, 210);
+        }
+            
+
+        .mais {
+            font-family: system-ui, Arial, Helvetica, sans-serif;
+            margin: 2vh;
+            margin-top: 1.5vh;
+            max-width: 100%;
+            padding-bottom: 2vh;
+            }
+
+        .mais > p,a {
+            font-size: 2.5vh;
+        }
+
+        .link {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0.3vh;
+        }
+
+        @media screen and (min-width: 600px ) {
+
+            .container {
+                display: grid;
+                grid-template-areas: "principal"
+                                     "vida"
+                                     "curiosidades"
+                                     "mais";
+                grid-template-rows: 45vh;
+
+            }
+
+             .principal {
+                display: grid;
+                grid-area: principal;
+                grid-template-areas: "t t"
+                                     "ft p";
+                grid-template-columns: 1fr 3fr;
+                grid-template-rows: 8vh 15vh ;
+            }
+
+            #titulo {
+                display: grid;
+                grid-area: t;
+                font-size: 4.2vh;
+                justify-content: center;
+            }
+
+            #stallonefoto {
+                grid-area: ft;
+                align-items: center;
+                margin: 3vh auto;
+                margin-bottom: 1vh;
+                margin-left: 2vh;
+                margin-top: 1vh;
+                width: 40vw;
+                height: 35vh;
+                border-radius: 2vh;
+            }
+
+            #textoprincipal {
+                display: grid;
+                grid-area: p;
+                height: 34vh;
+                font-size: 2.3vh;
+                align-items: center;
+
+            }
+
+            .vida {
+                display: grid;
+                grid-area: vida;
+                grid-template-areas: "titulo"
+                                     "texto";
+                grid-template-rows: 5vh auto;
+            }
+            
+            #tituloVida, #tituloCuriosidades {
+                display: grid;
+                grid-area: titulo;
+                font-size: 2.3vw;
+
+            }
+
+            #textovida, #textocuriosidades {
+                display: grid;
+                grid-area: texto;
+                font-size: 2.3vh;
+            }
+
+            .curiosidades {
+                display: grid;
+                grid-area: curiosidades;
+                grid-template-areas: "titulo"
+                                     "texto";
+                grid-template-rows: 5vh auto;
+            }
+
+        }
+
+        @media screen and (min-width: 992px ) {
+            .imgstallone {
+                height: 37vh
+
+            }
+
+            #stallonefoto {
+                max-width: 30vw;
+            }
+            
+            #textoprincipal {
+                height: 34vh;
+                align-items: center;
+                font-size: 2vw;
+            }
+
+
+        }
+
+        @media screen and (min-width: 1200px) {
+            
+
+            #stallonefoto {
+                max-width: 30vw;
+                width: 85%;
+            }
+            
+            #textoprincipal {
+                display: flex;
+                position: relative;
+                right: 3.5vh;
+                height: 34vh;
+                align-items: center;
+                font-size: 1.5vw;
+                margin: 0px;
+            }
+
+            #tituloVida, #tituloCuriosidades {
+                font-size: 1.7vw;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="principal">
+            <h1 id="titulo">Sylvester Stallone</h1>
+            <div class="imgstallone">
+                <img id="stallonefoto" src="/imagens/stallone.jpeg" alt="stallonefoto">
+            </div>
+            <p id="textoprincipal">
+                Sylvester Stallone, nascido em 6 de julho de 1946, é um renomado ator, roteirista e diretor americano. 
+                Ficou famoso por interpretar Rocky Balboa na série "Rocky" e John Rambo na série "Rambo". Nascido em Nova York, 
+                Stallone começou sua carreira nos anos 1970 e se destacou ao escrever e estrelar o filme "Rocky" (1976), que lhe rendeu 
+                reconhecimento internacional e duas indicações ao Oscar. Além de sua atuação, Stallone também dirigiu filmes como
+                "Rocky II" e "Rambo II - A Missão".
+            </p>
+        </div>
+        <div class="vida">
+            <h2 id="tituloVida">Vida Pessoal</h2>
+            <p id="textovida">Além de sua carreira notável no cinema, Stallone teve uma vida pessoal marcada por três casamentos e cinco filhos: 
+                Sage e Seargeoh Stallone com Sasha Czack, e Sophia, Sistine e Scarlet Stallone com Jennifer Flavin. 
+                Enfrentando desafios pessoais como saúde e questões legais, Stallone mostrou resiliência tanto na vida pessoal quanto na 
+                carreira cinematográfica. Além de suas contribuições para o cinema, ele é conhecido por apoiar causas filantrópicas, 
+                especialmente voltadas para veteranos de guerra e crianças com necessidades especiais. Stallone também se dedica à pintura, 
+                à escrita de roteiros além de "Rocky" e "Rambo", e compartilha suas rotinas de treino como entusiasta de fitness em suas 
+                redes sociais, destacando sua diversidade pessoal e compromisso com causas importantes além das telas de cinema.
+            </p>
+        </div>
+        <div class="curiosidades">
+            <h2 id="tituloCuriosidades">Curiosidades</h2>
+            <p id="textocuriosidades">Sylvester Stallone, nascido Michael Sylvester Gardenzio Stallone, é conhecido por sua adaptação do nome "Sylvester" inspirada em outro ator. 
+                Ele escreveu o roteiro de "Rocky" em apenas três dias após assistir a uma luta de boxe que o inspirou, recusando ofertas iniciais para vender
+                o roteiro sem o direito de atuar nele. Esse filme, lançado em 1976, não apenas se tornou um grande sucesso, 
+                mas também lhe rendeu duas indicações ao Oscar e solidificou sua carreira como ator e cineasta.
+            </p>
+        </div>
+        <div class="mais">
+            <p style="color: gold;">Veja mais sobre Sylvester Stallone em:</p>
+            <div class="link">
+                <a style="color: #32C8B3;" id="producoes" href="producoes.html">Produções</a>
+                <a style="color: #32C8B3;" id="interpretacoes" href="interpretacoes.html">Interpretacões</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
