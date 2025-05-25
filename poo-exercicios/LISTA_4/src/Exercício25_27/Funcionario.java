@@ -7,38 +7,67 @@ public class Funcionario {
     double salario;
     Data dtEntrada = new Data();
 
-
-    void lerFuncionario () {
+    void lerFuncionario() {
         Scanner scn = new Scanner(System.in);
 
-        System.out.println("Digite o nome do funcionário: ");
-        this.nome = scn.nextLine();
-        do {
-            System.out.println("Insira um nome válido: ");
-        } while (this.nome == null || this.nome.equals(""));
+        this.nome = validarEntrada("Digite o nome do funcionário:", scn);
+        this.departamento = validarEntrada("Digite o departamento do funcionário:", scn);
+        this.rg = validarEntrada("Digite o RG do funcionário:", scn);
 
-        System.out.println("Digite o departamento do funcionário: ");
-        this.departamento = scn.nextLine();
-        do {
-            System.out.println("Insira um departamento válido: ");
-        } while (this.departamento == null || this.departamento.equals(""));
+        this.cpf = validarEntrada("Digite o CPF do funcionário:", scn);
+        this.validarCPF();
+        while (!this.validarCPF()) {
+            this.cpf = validarEntrada("Insira um CPF válido:", scn);
+        }
 
-        System.out.println("Digite o rg do funcionário: ");
-        this.rg = scn.nextLine();
-        do {
-            System.out.println("Insira um rg válido: ");
-        } while (this.rg == null || this.rg.equals(""));
-
-        this.cpf = scn.nextLine();
-        this.salario = Double.parseDouble(scn.nextLine());
-        this.dtEntrada.dia = Integer.parseInt(scn.nextLine());
-        this.dtEntrada.mes = Integer.parseInt(scn.nextLine());
-        this.dtEntrada.ano = Integer.parseInt(scn.nextLine());
+        this.salario = validarSalario("Digite o salário do funcionário:", scn);
+        this.dtEntrada.dia = validarData("Digite a data de entrada do funcionário (dia):", scn, 1 , 31);
+        this.dtEntrada.mes = validarData("Digite a data de entrada do funcionário (mês):", scn, 1 , 12);
+        this.dtEntrada.ano = validarData("Digite a data de entrada do funcionário (ano):", scn, 1900, 2025);
 
         scn.close();
     }
 
-    boolean validarCPF () {
+    String validarEntrada(String mensagem, Scanner leia) {
+        String entrada;
+        do {
+            System.out.println(mensagem);
+            entrada = leia.nextLine();
+            if (entrada == null || entrada.equals("")) {
+                System.out.println("Entrada inválida. Tente novamente.");
+                entrada = leia.nextLine();
+            }
+        } while (entrada == null || entrada.equals(""));
+        return entrada;
+    }
+
+    double validarSalario(String mensagem, Scanner leia) {
+        double salario;
+        do {
+            System.out.println(mensagem);
+            salario = leia.nextDouble();
+            if (salario < 0) {
+                System.out.println("Salário inválido. Tente novamente.");
+                salario = leia.nextDouble();
+            }
+        } while (salario < 0);
+        return salario;
+    }
+
+    int validarData (String mensagem, Scanner leia, int min, int max) {
+        int data;
+        do {
+            System.out.println(mensagem);
+            data = leia.nextInt();
+            if (data < min || data > max) {
+                System.out.println("Data inválida. Tente novamente.");
+                data = leia.nextInt();
+            }
+        } while (data < min || data > max);
+        return data;
+    }
+
+    boolean validarCPF() {
         int tamanhoCPF = this.cpf.length();
         if (tamanhoCPF == 11 || tamanhoCPF == 14) {
             for (int i = 0; i < tamanhoCPF; i++) {
@@ -52,35 +81,37 @@ public class Funcionario {
             // se for falso não vai estar em nenhum dos casos:
             // 1: 00011122233 (length == 11)
             // 2: 000.111.222-33 (length == 14)
-            System.out.println("CPF inválido");
             return false;
         }
 
-        // se chegar aqui o formato do cpf é válido, agora vai verificar o dígito verificador
+        // se chegar aqui o formato do cpf é válido, agora vai verificar o dígito
+        // verificador
 
-        // primeiro copia todos os números para um vetor, considerando as duas situações (length == 11 ou length == 14)
+        // primeiro copia todos os números para um vetor, considerando as duas situações
+        // (length == 11 ou length == 14)
         int[] numerosCPF = new int[11];
         if (tamanhoCPF == 14) {
             // se for 14 o código tem que pegar somente os numeros
             int indice = 0;
-            for (int i = 0; i < 11; i++) {
+            for (int i = 0; i < 14; i++) {
                 if (Character.isDigit(this.cpf.charAt(i))) {
-                    numerosCPF[indice] = this.cpf.charAt(i);
+                    numerosCPF[indice] = this.cpf.charAt(i) - '0';
                     indice++;
                 }
             }
         } else {
             // então o tamanho é 11 e o usuário escreveu no formato de somente números
             for (int i = 0; i < 11; i++) {
-                numerosCPF[i] = this.cpf.charAt(i);
+                numerosCPF[i] = this.cpf.charAt(i) - '0';
             }
         }
 
         // calculando o primeiro DV
         int dv1;
-        // primeiro separa os 9 dígitos e multiplica cada número por um número decrescente começando em 10 e terminando em 2
-        int numeroMultiplicador = 9;
-        int[] numerosVerificacao = new int[9];
+        // primeiro separa os 9 dígitos e multiplica cada número por um número
+        // decrescente começando em 10 e terminando em 2
+        int numeroMultiplicador = 10;
+        int[] numerosVerificacao = new int[10];
         for (int i = 0; i < 9; i++) {
             numerosVerificacao[i] = numerosCPF[i] * numeroMultiplicador;
             numeroMultiplicador--;
@@ -88,7 +119,7 @@ public class Funcionario {
         // agora soma os valores e divide por 11
         int soma = 0;
         for (int i = 0; i < 9; i++) {
-            soma+= numerosVerificacao[i];
+            soma += numerosVerificacao[i];
         }
 
         if (soma % 11 < 2) {
@@ -97,7 +128,7 @@ public class Funcionario {
             dv1 = 11 - (soma % 11);
         }
 
-        if (dv1 != numerosCPF[10]) {
+        if (dv1 != numerosCPF[9]) {
             // já verifica direto se o primeiro dígito verificador está correto
             // se não tiver já retorna falso, se estiver continua a função
             return false;
@@ -105,9 +136,36 @@ public class Funcionario {
             // se chegar aqui o primeiro dígito verificador está correto
             // agora vai verificar o segundo dígito verificador
 
-        }
+            numerosVerificacao[9] = dv1;
+            int dv2;
+            // mesma lógica do primeiro DV, porém agora considerando os 9 dígitos do CPF + o
+            // segundo DV
+            numeroMultiplicador = 11;
+            for (int i = 0; i < 10; i++) {
+                numerosVerificacao[i] = numerosCPF[i] * numeroMultiplicador;
+                numeroMultiplicador--;
+            }
+            // agora soma os valores e divide por 11
+            soma = 0;
+            for (int i = 0; i < 10; i++) {
+                soma += numerosVerificacao[i];
+            }
 
-        return false;
+            if (soma % 11 < 2) {
+                dv2 = 0;
+            } else {
+                dv2 = 11 - (soma % 11);
+            }
+
+            if (dv2 != numerosCPF[10]) {
+                // já verifica direto se o primeiro dígito verificador está correto
+                // se não tiver já retorna falso, se estiver continua a função
+                return false;
+            } else {
+                // se chegar aqui o segundo dígito verificador está correto
+                return true;
+            }
+        }
     }
 
     void recebeAumento(double aumento) {
@@ -127,7 +185,7 @@ class Empresa {
 
     void adiciona(Funcionario f) {
         this.empregados = aumentarEmpregados(this.empregados);
-        this.empregados[empregados.length-1] = f;
+        this.empregados[empregados.length - 1] = f;
     }
 
     Funcionario[] aumentarEmpregados(Funcionario[] empregados) {
@@ -146,7 +204,8 @@ class Empresa {
                     System.out.println("Nome: " + empregados[i].nome);
                     System.out.println("Departamento: " + empregados[i].departamento);
                     System.out.println("RG: " + empregados[i].rg);
-                    System.out.println("Data de entrada: " + empregados[i].dtEntrada.dia + "/" + empregados[i].dtEntrada.mes + "/" + empregados[i].dtEntrada.ano);
+                    System.out.println("Data de entrada: " + empregados[i].dtEntrada.dia + "/"
+                            + empregados[i].dtEntrada.mes + "/" + empregados[i].dtEntrada.ano);
                     System.out.println("Salário: " + empregados[i].salario);
                     System.out.println("Ganho anual: " + empregados[i].calculaGanhoAnual());
                 }
