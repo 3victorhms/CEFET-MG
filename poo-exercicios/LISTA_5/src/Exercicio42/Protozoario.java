@@ -18,15 +18,20 @@ public class Protozoario {
 
     private Protozoario(int[] genotipo) {
         this.individualidade = gerarProximaId();
-        this.genotipo = genotipo;
+        for (int i = 0; i < genotipo.length; i++) {
+            this.genotipo[i] = genotipo[i];
+        }
+    }
+
+    private Protozoario(Protozoario outro) {
+        this.individualidade = gerarProximaId();
+        for (int i = 0; i < outro.genotipo.length; i++) {
+            this.genotipo[i] = outro.genotipo[i];
+        }
     }
 
     public int gerarProximaId() {
         return proximaId++;
-    }
-
-    public int[] getGenotipo() {
-        return genotipo;
     }
 
     public static Protozoario getInstance() {
@@ -50,20 +55,23 @@ public class Protozoario {
     }
 
     public Protozoario getClone() {
-        return Protozoario.getInstance(this.getGenotipo());
+        return new Protozoario(this);
     }
 
-    public Protozoario mate( Protozoario mae) {
-        int[] filho = new int[10];
+    public Protozoario mate(Protozoario mae) {
+        int[] genotipoFilho = new int[10];
         for (int i = 0; i < 10; i++) {
-            if (aleatorio.nextInt(101) + 1 == 7)
-                this.mutate();
             if (aleatorio.nextInt(2) == 0)
-                filho[i] = this.genotipo[i];
+                genotipoFilho[i] = this.genotipo[i];
             else
-                filho[i] = mae.genotipo[i];
+                genotipoFilho[i] = mae.genotipo[i];
         }
-        return Protozoario.getInstance(filho);
+
+        Protozoario p1 = Protozoario.getInstance(genotipoFilho);
+        if (aleatorio.nextInt(100) < 7)
+            p1.mutate();
+
+        return p1;
     }
 
     public void exibirProtozoario() {
